@@ -303,6 +303,7 @@ function EnquiryForm(props) {
                 We need to validate you are human:
               </label>
               {/* {'SITE Key ' +process.env.NEXT_PUBLIC_reCaptchaSiteKeyV3} */}
+              <input type="hidden" value={process.env.NEXT_PUBLIC_reCaptchaSiteKeyV3} />
               <ReCAPTCHA
                 sitekey={process.env.NEXT_PUBLIC_reCaptchaSiteKeyV3 || ''}
                 onChange={handleCaptcha}
