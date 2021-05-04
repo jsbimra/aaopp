@@ -61,15 +61,16 @@ function EnquiryForm(props) {
     name: "",
     mobile: "",
     email: "",
-    productType: mangoTypes[1],
+    productType: "",
     reachTimeStart: "10:00",
     reachTimeEnd: "12:30",
-    day: dayTypes[0],
+    day: dayTypes[1],
     message: ""
   };
 
   // console.log({ formInitialState });
-  const [formData, setFormData] = useState({ ...testDefaultValue });
+  // const [formData, setFormData] = useState({ ...testDefaultValue });
+  const [formData, setFormData] = useState({ ...formInitialState });
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
@@ -295,7 +296,7 @@ function EnquiryForm(props) {
                 </div>
               </div>
             </div>
-
+            {'env ' + process.env.reCaptchaSiteKeyV3}
             <div className={styles.inputGroup}>
             <label htmlFor="">
                 We need to validate you are human:

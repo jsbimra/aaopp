@@ -1,3 +1,5 @@
+
+// console.log('process env is : ' + process.env.CESPassword)
 export default function (req, res) {
   const nodemailer = require("nodemailer");
 
@@ -7,13 +9,19 @@ export default function (req, res) {
     // Only needed if you don't have a real mail account for testing
     // let testAccount = await nodemailer.createTestAccount();
     let testAccount = {
-      user: "aaopp@doableyo.com",
-      pass: "Aaopp@2098"
+      user: process.env.CESUsername,
+      pass: process.env.CESPassword,
     };
+
+    // Empty check and return
+    if(!req.body.name && !req.body.mobile) {
+      res.send({success: false, message: "Please pass post data "});
+      return;
+    }
 
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-      host: "mail.doableyo.com",
+      host: process.env.CEServer,
       port: 465,
       secure: true, // true for 465, false for other ports
       auth: {
@@ -22,7 +30,7 @@ export default function (req, res) {
       }
     });
 
-    console.log(req.body);
+    // console.log(req.body);
 
     // send mail with defined transport object
     let info = await transporter.sendMail({

@@ -8,8 +8,9 @@ import EnquiryForm from "../components/EnquiryForm";
 export default function IndexPage() {
   return (
     <div className={styles.container}>
-      <header>
+      <header className="p-0 m-0">
         <h1 className={styles.logo}>AAOPP</h1>
+        <h4 className="text-center zenFontStyle mb-3 pb-0">Season Fruit - Manoges</h4>
       </header>
 
       <VideoBox autoPlay={false} />
