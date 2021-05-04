@@ -1,0 +1,23 @@
+{
+  "name": "aaopp-app",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "post-update": "yarn upgrade --latest"
+  },
+  "dependencies": {
+    "bootstrap": "4.6.0",
+    "dotenv": "8.2.0",
+    "next": "latest",
+    "nodemailer": "6.6.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-google-recaptcha": "2.1.0",
+    "sass": "1.32.12"
+  },
+  "license": "MIT",
+  "keywords": [],
+  "description": ""
+}

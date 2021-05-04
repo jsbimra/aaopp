@@ -1,0 +1,11 @@
+.videoPanel {
+  padding: 0 1.3rem 1.3rem;
+  height: 59vh;
+}
+
+
+@media (min-width: 450px) {
+  .videoPanel {
+    height: 71vh;
+  }
+}
