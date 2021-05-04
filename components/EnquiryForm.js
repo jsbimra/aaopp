@@ -104,7 +104,7 @@ function EnquiryForm(props) {
       return;
     }
 
-    console.log("Sending", formData);
+    // console.log("Sending", formData);
 
     let data = {
       ...formData,
@@ -304,7 +304,7 @@ function EnquiryForm(props) {
               </label>
               {/* {'SITE Key ' +process.env.NEXT_PUBLIC_reCaptchaSiteKeyV3} */}
               <ReCAPTCHA
-                sitekey={process.env.NEXT_PUBLIC_reCaptchaSiteKeyV3}
+                sitekey={process.env.NEXT_PUBLIC_reCaptchaSiteKeyV3 || ''}
                 onChange={handleCaptcha}
               />
             </div>
