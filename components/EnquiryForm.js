@@ -153,6 +153,8 @@ function EnquiryForm(props) {
 
   return (
     <>
+            {/* {'env ' + process.env.NEXT_PUBLIC_reCaptchaSiteKeyV3} */}
+
       {!submitted ? (
         <>
           {title ? <h2 className={styles.h2+ ' text-center'}>{title}</h2> : null}
@@ -296,13 +298,13 @@ function EnquiryForm(props) {
                 </div>
               </div>
             </div>
-            {'env ' + process.env.reCaptchaSiteKeyV3}
             <div className={styles.inputGroup}>
             <label htmlFor="">
                 We need to validate you are human:
               </label>
+              {/* {'SITE Key ' +process.env.NEXT_PUBLIC_reCaptchaSiteKeyV3} */}
               <ReCAPTCHA
-                sitekey="6LdXG8YaAAAAAITC8L5OsmOK1cVHNpohftW-Xa45"
+                sitekey={process.env.NEXT_PUBLIC_reCaptchaSiteKeyV3}
                 onChange={handleCaptcha}
               />
             </div>
