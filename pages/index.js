@@ -1,5 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import styles from "../styles/Home.module.scss";
 import VideoBox from "../components/VideoBox";
@@ -9,8 +9,9 @@ export default function IndexPage() {
   return (
     <div className={styles.container}>
       <header className="p-0 m-0">
-        <h1 className={styles.logo}>AAOPP</h1>
-        <h4 className="text-center zenFontStyle mb-3 pb-0">Season Fruit - Manoges</h4>
+        <h1 className={styles.logo} style={{fontSize: '1.3rem'}}>AAOPP</h1>
+        <h2 className="text-center zenFontStyle mb-3 pb-0">Season Fruit</h2>
+        <h5 className="text-center">Mangoes!</h5>
       </header>
 
       <VideoBox autoPlay={false} />
