@@ -23,11 +23,9 @@ export default function IndexPage() {
       </div>
 
       <footer className="text-center mt-5 p-2">
-        <p className="text-secondary text-small">Thank you for visiting.</p>
+        <p className="text-secondary text-black-50">Thank you for visiting.</p>
         <cite>
-          Copyright {new Date().getFullYear()}
-          <br />
-          <small>All rights reserved.</small>
+          {/* <small className="text-muted">&copy; {new Date().getFullYear()} all rights reserved. </small> */}
         </cite>
       </footer>
     </div>

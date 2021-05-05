@@ -381,10 +381,11 @@ function EnquiryForm(props) {
               />
               <small className="d-inline-block text-right text-secondary">This is security purpose check.</small>
             </div>
-            <div className={styles.inputGroup + " form-floating"}>
+            
+            <div className={'mt-4 d-flex'}>
               <input
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-primary flex-fill"
                 defaultValue="Send"
               />
             </div>
