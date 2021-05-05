@@ -11,6 +11,9 @@ export default function (req, res) {
     let testAccount = {
       user: process.env.CESUsername,
       pass: process.env.CESPassword,
+      emailFrom: `Season Fruit (Mangoes) -  AAOPP! 👻 (from Codesandbox Application) <${process.env.CESEmailFrom}>`,
+      emailTo: process.env.CESEmailTo,
+      emailSubject: `Mangoes Enquiry ✔ Dated - ${new Date().toString()}`,
     };
 
     // Empty check and return
@@ -34,9 +37,9 @@ export default function (req, res) {
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
-      from: '"AAOPP! 👻 (from Codesandbox Application)" <aaopp@doableyo.com>', // sender address
-      to: "test@doableyo.com, aaopp@doableyo.com", // list of receivers
-      subject: "Mangoes Enquiry ✔ Dated - " + new Date().toString(), // Subject line
+      from: testAccount.emailFrom, // sender address
+      to: testAccount.emailTo, // list of receivers
+      subject: testAccount.emailSubject, // Subject line
       text:
         "Date of Enquiry: " +
         new Date().toDateString() + " " + new Date().toLocaleTimeString() +
