@@ -16,7 +16,9 @@ function EnquiryForm(props) {
     isInvalid: false,
   });
 
-  const mangoTypes = ["Ratnagiri", "Devgarh"].sort();
+  const mangoTypes = ["Ratnagiri", "Devgarh", "for Both"].sort();
+  // const mangoTypes = ["Devgarh"].sort();
+  const dozen = [1,2,4,5,"more than 5"];
   const timeOptions = () => {
     const startTime = 1000;
     const endTime = 2000;
@@ -56,9 +58,10 @@ function EnquiryForm(props) {
     mobile: "123467890",
     email: "test@test.com",
     productType: mangoTypes[1],
+    dozen: dozen[4],
     reachTimeStart: "10:00",
     reachTimeEnd: "12:30",
-    day: dayTypes[0],
+    day: dayTypes[3],
     message: ""
   };
 
@@ -67,6 +70,7 @@ function EnquiryForm(props) {
     mobile: "",
     email: "",
     productType: "",
+    dozen: dozen[0],
     reachTimeStart: "10:00",
     reachTimeEnd: "12:30",
     day: dayTypes[1],
@@ -74,8 +78,8 @@ function EnquiryForm(props) {
   };
 
   // console.log({ formInitialState });
-  const [formData, setFormData] = useState({ ...testDefaultValue });
-  // const [formData, setFormData] = useState({ ...formInitialState });
+  // const [formData, setFormData] = useState({ ...testDefaultValue });
+  const [formData, setFormData] = useState({ ...formInitialState });
   const [submitted, setSubmitted] = useState(false);
   
   const handleChange = (e) => {
@@ -236,7 +240,6 @@ function EnquiryForm(props) {
             </div>
 
             <div className={styles.inputGroup + " form-floating"}>
-              
               <select
                 required
                 id="mangoType"
@@ -254,9 +257,33 @@ function EnquiryForm(props) {
                 ))}
               </select>
               <label htmlFor="mangoType">
-                Mango Type:<sup>*</sup>
+                Mango type:<sup>*</sup>
               </label>
             </div>
+
+            <div className={styles.inputGroup + " form-floating"}>
+              <select
+                required
+                id="dozen"
+                name="dozen"
+                defaultValue={formData.dozen}
+                onChange={handleChange}
+                className={"form-select form-select-sm"}
+              >
+                
+                <option>Select</option>
+                {dozen.map((value, idx) => (
+                  <option key={"option-" + idx} 
+                  value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+              <label htmlFor="dozen">
+                How many dozen?:<sup>*</sup>
+              </label>
+            </div>
+
             <label>Day and Time we can reach you back</label>
 
             <div className="row">

@@ -46,8 +46,10 @@ export default function (req, res) {
         req.body.mobile +
         " | Email: " +
         req.body.email +
-        " | Mango Type" +
+        " | Mango type" +
         req.body.productType +
+        " | Dozen" +
+        req.body.dozen +
         " | Time to reach at: " +
         req.body.reachTimeStart +
         " - " +
@@ -83,8 +85,12 @@ export default function (req, res) {
             <td>${req.body.email}</td>
           </tr>
           <tr>
-            <th scope="row">Mango Type:</th>
+            <th scope="row">Mango type:</th>
             <td>${req.body.productType}</td>
+          </tr>
+          <tr>
+            <th scope="row">Dozen:</th>
+            <td>${req.body.dozen}</td>
           </tr>
           <tr>
             <th scope="row">Day availability:</th>
