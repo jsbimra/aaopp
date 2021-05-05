@@ -49,16 +49,18 @@ export default function (req, res) {
         req.body.mobile +
         " | Email: " +
         req.body.email +
-        " | Mango type" +
+        " | Mango type: " +
         req.body.productType +
-        " | Dozen" +
+        " | Dozen: " +
         req.body.dozen +
         " | Time to reach at: " +
         req.body.reachTimeStart +
         " - " +
         req.body.reachTimeEnd +
-        " | Day " +
-        req.body.day, // plain text body
+        " | Day: " +
+        req.body.day +
+        " | Location: " +
+        req.body.location , // plain text body
       html: `
       <div style=" width:80%; margin: 10px auto;">
         <p>Hi here, <br /><br /> Enquiry recieved from: <strong>${req.body.name}</strong></p>
@@ -102,6 +104,10 @@ export default function (req, res) {
           <tr>
             <th scope="row">Time to reach at:</th>
             <td>${req.body.reachTimeStart} - ${req.body.reachTimeEnd}</td>
+          </tr>
+          <tr>
+            <th scope="row">Location:</th>
+            <td>${req.body.location}</td>
           </tr>
         </tbody>
       </table>

@@ -62,7 +62,8 @@ function EnquiryForm(props) {
     reachTimeStart: "10:00",
     reachTimeEnd: "12:30",
     day: dayTypes[3],
-    message: ""
+    message: "",
+    location: "",
   };
 
   const formInitialState = {
@@ -74,7 +75,8 @@ function EnquiryForm(props) {
     reachTimeStart: "10:00",
     reachTimeEnd: "12:30",
     day: dayTypes[1],
-    message: ""
+    message: "",
+    location: "",
   };
 
   // console.log({ formInitialState });
@@ -206,6 +208,7 @@ function EnquiryForm(props) {
                 Name:<sup>*</sup>
               </label>
             </div>
+
             <div className={styles.inputGroup + " form-floating"}>
              
               <input
@@ -285,8 +288,8 @@ function EnquiryForm(props) {
               </label>
             </div>
 
+            {/* Day and Time */}
             <label>Day and Time we can reach you back</label>
-
             <div className="row">
               <div className="col-sm-5 col-md-6">
                 <div>
@@ -313,6 +316,7 @@ function EnquiryForm(props) {
                   })}
                 </div>
               </div>
+
               <div className="col-sm-7 col-md-6">
                 <label>Time:</label>
                 <div className={styles.inputGroup}>
@@ -371,6 +375,25 @@ function EnquiryForm(props) {
                 </div>
               </div>
             </div>
+           
+           {/* Location */}
+            <div className={styles.inputGroup + " form-floating"}>
+              <input
+                // required
+                type="text"
+                id="location"
+                name="location"
+                defaultValue={formData.location}
+                onChange={handleChange}
+                className={"form-control form-control-sm"}
+                placeholder="Enter your location"
+              />
+              <label htmlFor="location" className="form-label1">
+                Location:
+              </label>
+            </div>
+
+            {/* Recaptcha */}
             <div className={styles.inputGroup}>
               <label htmlFor="">Verify captcha code:<sup>*</sup></label>
               {/* {'SITE Key ' +process.env.NEXT_PUBLIC_reCaptchaSiteKeyV2} */}
