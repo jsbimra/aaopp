@@ -12,7 +12,8 @@ function EnquiryForm(props) {
   const [captchaValidate, setCaptchaValidate] = useState({
     status: false,
     error: false,
-    value: null
+    value: null,
+    isInvalid: false,
   });
 
   const mangoTypes = ["Ratnagiri", "Devgarh"].sort();
@@ -95,6 +96,7 @@ function EnquiryForm(props) {
     if (value) {
       setCaptchaValidate({
         status: true,
+        isInvalid: false,
         value
       });
       return;
@@ -119,8 +121,12 @@ function EnquiryForm(props) {
     e.preventDefault();
 
     console.log(captchaValidate.status)
-    if (typeof captchaValidate.status !== 'boolean' || !captchaValidate.status) {
+    if (!captchaValidate.status) {
       console.log("Captcha not validated yet ");
+      setCaptchaValidate({
+        ...captchaValidate,
+        isInvalid: true
+      });
       return;
     }
 
@@ -193,7 +199,7 @@ function EnquiryForm(props) {
                 placeholder="Enter your name"
               />
               <label htmlFor="name" className="form-label1">
-                Name<sup>*</sup>:
+                Name:<sup>*</sup>
               </label>
             </div>
             <div className={styles.inputGroup + " form-floating"}>
@@ -211,7 +217,7 @@ function EnquiryForm(props) {
                 maxLength="10"
               />
                <label htmlFor="mobile">
-                Mobile<sup>*</sup>:
+                Mobile:<sup>*</sup>
               </label>
             </div>
             <div className={styles.inputGroup + " form-floating"}>
@@ -226,7 +232,7 @@ function EnquiryForm(props) {
                 className={"form-control form-control-sm"}
               />
               <label htmlFor="email">
-                Email<sup>*</sup>:
+                Email:<sup>*</sup>
               </label>
             </div>
 
@@ -249,7 +255,7 @@ function EnquiryForm(props) {
                 ))}
               </select>
               <label htmlFor="mangoType">
-                Mango Type<sup>*</sup>:
+                Mango Type:<sup>*</sup>
               </label>
             </div>
             <label>Day and Time we can reach you back</label>
@@ -304,7 +310,7 @@ function EnquiryForm(props) {
                         })}
                       </select>
                       <label htmlFor="reachTimeStart">
-                        From<sup>*</sup>:
+                        From:<sup>*</sup>
                       </label>
                     </div>
                     <span className="text-center flex-fill text-secondary">{" "}until{" "}</span>
@@ -327,7 +333,7 @@ function EnquiryForm(props) {
                         })}
                       </select>
                       <label htmlFor="reachTimeEnd">
-                        To<sup>*</sup>:
+                        To:<sup>*</sup>
                       </label>
                     </div>
                   </div>
@@ -339,7 +345,7 @@ function EnquiryForm(props) {
               </div>
             </div>
             <div className={styles.inputGroup}>
-              <label htmlFor="">Verify us as human action:</label>
+              <label htmlFor="">Verify captcha code:<sup>*</sup></label>
               {/* {'SITE Key ' +process.env.NEXT_PUBLIC_reCaptchaSiteKeyV2} */}
               {/* <input type="hidden" value={process.env.NEXT_PUBLIC_reCaptchaSiteKeyV2}  /> tested working now */}
               <ReCAPTCHA
@@ -380,10 +386,16 @@ function EnquiryForm(props) {
       )}
       {captchaValidate.status}
       <Loader show={submitting} message={"Moment please "} />
-      <ToastAlert show={captchaValidate.error}
+      <ToastAlert 
+        show={captchaValidate.error}
         type={'error'}
         heading="Alert"
         message={'We are facing recaptcha issue, please try after sometime.'} />
+      <ToastAlert 
+        show={captchaValidate.isInvalid}
+        type={'error'}
+        heading="Alert"
+        message={'Please verify captcha.'} />
     </>
   );
 }
