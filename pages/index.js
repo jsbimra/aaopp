@@ -14,10 +14,9 @@ export default function IndexPage() {
         <h5 className="text-center">Mangoes!</h5>
       </header>
 
-      <VideoBox autoPlay={false} />
-
       <div className={styles.main + " ml-5 mr-5 "}>
         {/* <p className="text-small text-secondary">We will get back to with your query. Thank you.</p> */}
+        <VideoBox autoPlay={false} />
 
         <EnquiryForm title="Enquiry for Rates & Delivery" />
       </div>

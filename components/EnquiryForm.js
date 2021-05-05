@@ -188,7 +188,8 @@ function EnquiryForm(props) {
           {title ? (
             <h2 className={styles.h2 + " text-center"}>{title}</h2>
           ) : null}
-          <form onSubmit={handleSubmit} className="mb-3" validate="true">
+          <form onSubmit={handleSubmit} 
+          className={' mb-3'} validate="true">
             
             <div className={styles.inputGroup + " form-floating"}>
               <input
