@@ -91,7 +91,7 @@ function EnquiryForm(props) {
   };
 
   const handleCaptcha = (value) => {
-    console.log("Captcha value:", value);
+    // console.log("Captcha value:", value);
 
     if (value) {
       setCaptchaValidate({
@@ -120,7 +120,7 @@ function EnquiryForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(captchaValidate.status)
+    // console.log(captchaValidate.status)
     if (!captchaValidate.status) {
       console.log("Captcha not validated yet ");
       setCaptchaValidate({
@@ -154,7 +154,6 @@ function EnquiryForm(props) {
         setSubmitting(false);
         if (res.status === 200) {
           const result = await res.json();
-
           // console.log("Response succeeded!", result);
 
           if (result.success) {
