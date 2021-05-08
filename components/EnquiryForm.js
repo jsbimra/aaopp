@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import * as ga from "../lib/ga";
 
 import styles from "../styles/Form.module.scss";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -13,12 +13,12 @@ function EnquiryForm(props) {
     status: false,
     error: false,
     value: null,
-    isInvalid: false,
+    isInvalid: false
   });
 
   const mangoTypes = ["Ratnagiri", "Devgarh", "for Both"].sort();
   // const mangoTypes = ["Devgarh"].sort();
-  const dozen = [1,2,4,5,"more than 5"];
+  const dozen = [1, 2, 4, 5, "more than 5"];
   const timeOptions = () => {
     const startTime = 1000;
     const endTime = 2000;
@@ -63,7 +63,7 @@ function EnquiryForm(props) {
     reachTimeEnd: "12:30",
     day: dayTypes[3],
     message: "",
-    location: "",
+    location: ""
   };
 
   const formInitialState = {
@@ -76,14 +76,14 @@ function EnquiryForm(props) {
     reachTimeEnd: "12:30",
     day: dayTypes[1],
     message: "",
-    location: "",
+    location: ""
   };
 
   // console.log({ formInitialState });
   // const [formData, setFormData] = useState({ ...testDefaultValue });
   const [formData, setFormData] = useState({ ...formInitialState });
   const [submitted, setSubmitted] = useState(false);
-  
+
   const handleChange = (e) => {
     // e.preventDefault(); //cause radio to twice click to reflect change
     const { name, value } = e.target;
@@ -110,16 +110,16 @@ function EnquiryForm(props) {
 
     setCaptchaValidate({
       ...captchaValidate,
-      error: true,
+      error: true
     });
   };
 
   const handleCaptchaEror = (error) => {
     console.log("Captcha error:", error);
-   
+
     setCaptchaValidate({
       ...captchaValidate,
-      error: true,
+      error: true
     });
   };
 
@@ -144,6 +144,13 @@ function EnquiryForm(props) {
     };
 
     setSubmitting(true);
+
+    ga.event({
+      action: "enquiryFormSubmitted",
+      params: {
+        formData: data
+      }
+    });
 
     fetch("/api/sendEmail", {
       method: "POST",
@@ -190,9 +197,7 @@ function EnquiryForm(props) {
           {title ? (
             <h2 className={styles.h2 + " text-center"}>{title}</h2>
           ) : null}
-          <form onSubmit={handleSubmit} 
-          className={' mb-3'} validate="true">
-            
+          <form onSubmit={handleSubmit} className={" mb-3"} validate="true">
             <div className={styles.inputGroup + " form-floating"}>
               <input
                 required
@@ -210,7 +215,6 @@ function EnquiryForm(props) {
             </div>
 
             <div className={styles.inputGroup + " form-floating"}>
-             
               <input
                 required
                 type="number"
@@ -223,7 +227,7 @@ function EnquiryForm(props) {
                 minLength="10"
                 maxLength="10"
               />
-               <label htmlFor="mobile">
+              <label htmlFor="mobile">
                 Mobile:<sup>*</sup>
               </label>
             </div>
@@ -252,7 +256,6 @@ function EnquiryForm(props) {
                 onChange={handleChange}
                 className={"form-select form-select-sm"}
               >
-                
                 <option>Select</option>
                 {mangoTypes.map((type, idx) => (
                   <option key={"option-" + idx} value={type}>
@@ -274,11 +277,9 @@ function EnquiryForm(props) {
                 onChange={handleChange}
                 className={"form-select form-select-sm"}
               >
-                
                 <option>Select</option>
                 {dozen.map((value, idx) => (
-                  <option key={"option-" + idx} 
-                  value={value}>
+                  <option key={"option-" + idx} value={value}>
                     {value}
                   </option>
                 ))}
@@ -296,7 +297,7 @@ function EnquiryForm(props) {
                   <label>Day:</label>
                   {dayTypes.map((type, idx) => {
                     return (
-                      <div key={`day-` + idx}  className={"form-check"}>
+                      <div key={`day-` + idx} className={"form-check"}>
                         <input
                           type="radio"
                           id={`day-` + idx}
@@ -306,11 +307,12 @@ function EnquiryForm(props) {
                           onChange={handleChange}
                           className="form-check-input"
                         />
-                      <label htmlFor={`day-` + idx}
+                        <label
+                          htmlFor={`day-` + idx}
                           className="form-check-label"
-                      >
-                      {" " + type}
-                      </label>
+                        >
+                          {" " + type}
+                        </label>
                       </div>
                     );
                   })}
@@ -320,9 +322,11 @@ function EnquiryForm(props) {
               <div className="col-sm-7 col-md-6">
                 <label>Time:</label>
                 <div className={styles.inputGroup}>
-                  <div className=" d-flex align-items-center 
-                  justify-content-stretch">
-                    <div className="form-floating flex-fill ">                    
+                  <div
+                    className=" d-flex align-items-center 
+                  justify-content-stretch"
+                  >
+                    <div className="form-floating flex-fill ">
                       <select
                         required
                         id="reachTimeStart"
@@ -344,8 +348,11 @@ function EnquiryForm(props) {
                         From:<sup>*</sup>
                       </label>
                     </div>
-                    <span className="text-center flex-fill text-secondary">{" "}until{" "}</span>
-                    <div className="form-floating flex-fill ">                    
+                    <span className="text-center flex-fill text-secondary">
+                      {" "}
+                      until{" "}
+                    </span>
+                    <div className="form-floating flex-fill ">
                       <select
                         required
                         id="reachTimeEnd"
@@ -375,8 +382,8 @@ function EnquiryForm(props) {
                 </div>
               </div>
             </div>
-           
-           {/* Location */}
+
+            {/* Location */}
             <div className={styles.inputGroup + " form-floating"}>
               <input
                 // required
@@ -395,7 +402,9 @@ function EnquiryForm(props) {
 
             {/* Recaptcha */}
             <div className={styles.inputGroup}>
-              <label htmlFor="">Verify captcha code:<sup>*</sup></label>
+              <label htmlFor="">
+                Verify captcha code:<sup>*</sup>
+              </label>
               {/* {'SITE Key ' +process.env.NEXT_PUBLIC_reCaptchaSiteKeyV2} */}
               {/* <input type="hidden" value={process.env.NEXT_PUBLIC_reCaptchaSiteKeyV2}  /> tested working now */}
               <ReCAPTCHA
@@ -403,10 +412,12 @@ function EnquiryForm(props) {
                 onChange={handleCaptcha}
                 onErrored={handleCaptchaEror}
               />
-              <small className="d-inline-block text-right text-secondary">This is security purpose check.</small>
+              <small className="d-inline-block text-right text-secondary">
+                This is security purpose check.
+              </small>
             </div>
-            
-            <div className={'mt-4 d-flex'}>
+
+            <div className={"mt-4 d-flex"}>
               <input
                 type="submit"
                 className="btn btn-primary flex-fill"
@@ -437,16 +448,18 @@ function EnquiryForm(props) {
       )}
       {captchaValidate.status}
       <Loader show={submitting} message={"Moment please "} />
-      <ToastAlert 
+      <ToastAlert
         show={captchaValidate.error}
-        type={'error'}
+        type={"error"}
         heading="Alert"
-        message={'We are facing recaptcha issue, please try after sometime.'} />
-      <ToastAlert 
+        message={"We are facing recaptcha issue, please try after sometime."}
+      />
+      <ToastAlert
         show={captchaValidate.isInvalid}
-        type={'error'}
+        type={"error"}
         heading="Alert"
-        message={'Please verify captcha.'} />
+        message={"Please verify captcha."}
+      />
     </>
   );
 }
