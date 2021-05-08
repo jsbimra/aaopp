@@ -1,3 +1,12 @@
+import Head from "next/head";
+
 export default function Contact(props) {
-  return <div>Contact us!</div>;
+  return (
+    <>
+      <Head>
+        <title>Contact Us - AAOPP</title>
+      </Head>
+      <div>Contact us!</div>
+    </>
+  );
 }
